@@ -12,6 +12,16 @@ export default function Preloader({ onComplete }) {
     // Disable body scroll during preload
     document.body.style.overflow = 'hidden'
 
+    // Continuous Infinite Left Marquee Animation
+    if (marqueeRef.current) {
+      gsap.to(marqueeRef.current, {
+        xPercent: -50,
+        repeat: -1,
+        duration: 14,
+        ease: 'none',
+      })
+    }
+
     // Progress counter animation
     const tl = gsap.timeline({
       onComplete: () => {
@@ -86,12 +96,13 @@ export default function Preloader({ onComplete }) {
       </div>
 
       {/* Giant Background Marquee Text */}
-      <div className="relative w-full overflow-hidden whitespace-nowrap py-8 sm:py-12 opacity-85 select-none pointer-events-none">
+      <div className="relative w-full overflow-hidden whitespace-nowrap py-8 sm:py-12 opacity-85 select-none pointer-events-none flex">
         <div
           ref={marqueeRef}
-          className="inline-block text-[10vw] sm:text-[9vw] font-black uppercase tracking-tight text-slate-900 leading-none whitespace-nowrap"
+          className="inline-flex text-[10vw] sm:text-[9vw] font-black uppercase tracking-tight text-slate-900 leading-none whitespace-nowrap will-change-transform"
         >
-          AI/ML ENGINEER • GENERATIVE AI • MACHINE LEARNING • DEEP LEARNING • NLP • AI/ML ENGINEER •
+          <span>AI/ML ENGINEER • GENERATIVE AI • MACHINE LEARNING • DEEP LEARNING • NLP •&nbsp;</span>
+          <span>AI/ML ENGINEER • GENERATIVE AI • MACHINE LEARNING • DEEP LEARNING • NLP •&nbsp;</span>
         </div>
       </div>
 

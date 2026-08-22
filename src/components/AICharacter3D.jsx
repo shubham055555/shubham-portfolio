@@ -1,20 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import heroAvatarImg from '../assets/hero-avatar.jpg'
 
 export default function AICharacter3D({ className = 'w-full h-full' }) {
-  const containerRef = useRef(null)
-  const canvasRef = useRef(null)
-  const fallbackCardRef = useRef(null)
-  const [webglAvailable, setWebglAvailable] = useState(true)
+  const mountRef = useRef(null)
 
-  // 1. Interactive 3D Three.js Mascot (WebGL)
   useEffect(() => {
-    if (!webglAvailable) return
-
-    const container = containerRef.current
-    const canvas = canvasRef.current
-    if (!container || !canvas) return
+    const mount = mountRef.current
+    if (!mount) return
 
     let renderer
     let scene
@@ -25,27 +17,33 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     try {
       scene = new THREE.Scene()
 
-      const width = container.clientWidth || 340
-      const height = container.clientHeight || 340
+      const width = mount.clientWidth || 360
+      const height = mount.clientHeight || 360
 
       camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100)
       camera.position.set(0, 0, 4.3)
 
       renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
         alpha: true,
         antialias: true,
-        powerPreference: 'high-performance',
       })
       renderer.setSize(width, height)
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      renderer.domElement.style.width = '100%'
+      renderer.domElement.style.height = '100%'
+      renderer.domElement.style.maxWidth = '420px'
+      renderer.domElement.style.maxHeight = '420px'
+      renderer.domElement.style.display = 'block'
+      renderer.domElement.style.cursor = 'grab'
+      renderer.domElement.style.touchAction = 'none'
+
+      mount.appendChild(renderer.domElement)
     } catch (err) {
-      console.warn('Three.js WebGL initialization fallback:', err)
-      setWebglAvailable(false)
+      console.error('Three.js WebGL error:', err)
       return
     }
 
-    // --- BUILD 3D ROBOT MASCOT ---
+    // --- 3D ROBOT / AI MASCOT HIERARCHY ---
     const robotGroup = new THREE.Group()
     scene.add(robotGroup)
 
@@ -54,7 +52,7 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     headGroup.position.set(0, 0.55, 0)
     robotGroup.add(headGroup)
 
-    // Metallic Head Sphere
+    // Dark Metallic Head Sphere
     const headGeo = new THREE.SphereGeometry(0.52, 32, 32)
     const headMat = new THREE.MeshStandardMaterial({
       color: 0x0f172a,
@@ -64,85 +62,85 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     const headMesh = new THREE.Mesh(headGeo, headMat)
     headGroup.add(headMesh)
 
-    // Glossy Visor
-    const visorGeo = new THREE.SphereGeometry(0.45, 32, 16)
+    // Glossy Dark Visor
+    const visorGeo = new THREE.SphereGeometry(0.46, 32, 16)
     const visorMat = new THREE.MeshStandardMaterial({
       color: 0x030712,
-      roughness: 0.1,
+      roughness: 0.08,
       metalness: 0.95,
     })
     const visorMesh = new THREE.Mesh(visorGeo, visorMat)
-    visorMesh.position.set(0, 0.02, 0.24)
-    visorMesh.scale.set(0.9, 0.65, 0.6)
+    visorMesh.position.set(0, 0.02, 0.23)
+    visorMesh.scale.set(0.92, 0.68, 0.62)
     headGroup.add(visorMesh)
 
-    // Glowing Eyes
+    // Digital Glowing Cyan Eyes
     const eyeGroup = new THREE.Group()
-    eyeGroup.position.set(0, 0.03, 0.48)
+    eyeGroup.position.set(0, 0.04, 0.48)
     headGroup.add(eyeGroup)
 
-    const eyeGeo = new THREE.CapsuleGeometry(0.045, 0.08, 16, 16)
+    const eyeGeo = new THREE.CapsuleGeometry(0.048, 0.09, 16, 16)
     const eyeMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4 })
 
     const leftEye = new THREE.Mesh(eyeGeo, eyeMat)
-    leftEye.position.set(-0.15, 0, 0)
+    leftEye.position.set(-0.16, 0, 0)
     eyeGroup.add(leftEye)
 
     const rightEye = new THREE.Mesh(eyeGeo, eyeMat)
-    rightEye.position.set(0.15, 0, 0)
+    rightEye.position.set(0.16, 0, 0)
     eyeGroup.add(rightEye)
 
-    // Cyber Ear Nodes
-    const earGeo = new THREE.CylinderGeometry(0.14, 0.14, 0.08, 24)
+    // Cyber Ear Headphone Nodes
+    const earGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.09, 24)
     const earMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.7, roughness: 0.3 })
     const ringMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4, side: THREE.DoubleSide })
-    const earRingGeo = new THREE.RingGeometry(0.08, 0.12, 24)
+    const earRingGeo = new THREE.RingGeometry(0.08, 0.13, 24)
 
     const leftEar = new THREE.Mesh(earGeo, earMat)
-    leftEar.position.set(-0.52, 0, 0)
+    leftEar.position.set(-0.53, 0, 0)
     leftEar.rotation.z = Math.PI / 2
     headGroup.add(leftEar)
 
     const leftEarRing = new THREE.Mesh(earRingGeo, ringMat)
-    leftEarRing.position.set(-0.56, 0, 0)
+    leftEarRing.position.set(-0.58, 0, 0)
     leftEarRing.rotation.y = Math.PI / 2
     headGroup.add(leftEarRing)
 
     const rightEar = new THREE.Mesh(earGeo, earMat)
-    rightEar.position.set(0.52, 0, 0)
+    rightEar.position.set(0.53, 0, 0)
     rightEar.rotation.z = Math.PI / 2
     headGroup.add(rightEar)
 
     const rightEarRing = new THREE.Mesh(earRingGeo, ringMat)
-    rightEarRing.position.set(0.56, 0, 0)
+    rightEarRing.position.set(0.58, 0, 0)
     rightEarRing.rotation.y = Math.PI / 2
     headGroup.add(rightEarRing)
 
-    // Antenna & Glowing Beacon
+    // Top Antenna & Beacon Orb
     const antStemGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.16, 16)
     const antStemMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.9, roughness: 0.2 })
     const antStem = new THREE.Mesh(antStemGeo, antStemMat)
     antStem.position.set(0, 0.58, 0)
     headGroup.add(antStem)
 
-    const antOrbGeo = new THREE.SphereGeometry(0.065, 24, 24)
+    const antOrbGeo = new THREE.SphereGeometry(0.07, 24, 24)
     const antOrbMat = new THREE.MeshStandardMaterial({
       color: 0x00f5d4,
       emissive: 0x00f5d4,
-      emissiveIntensity: 2.2,
+      emissiveIntensity: 2.5,
     })
     const antOrb = new THREE.Mesh(antOrbGeo, antOrbMat)
-    antOrb.position.set(0, 0.68, 0)
+    antOrb.position.set(0, 0.69, 0)
     headGroup.add(antOrb)
 
-    // B. Neck
-    const neckGeo = new THREE.CylinderGeometry(0.16, 0.22, 0.15, 24)
+    // B. Cyber Neck
+    const neckGeo = new THREE.CylinderGeometry(0.16, 0.22, 0.16, 24)
     const neckMat = new THREE.MeshStandardMaterial({ color: 0x090d16, metalness: 0.9, roughness: 0.1 })
     const neck = new THREE.Mesh(neckGeo, neckMat)
     neck.position.set(0, 0.05, 0)
     robotGroup.add(neck)
 
-    // C. Torso & Core
+    // C. Armored Torso & Core Reactor
     const torsoGroup = new THREE.Group()
     torsoGroup.position.set(0, -0.4, 0)
     robotGroup.add(torsoGroup)
@@ -163,20 +161,20 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     chestPlate.scale.set(1, 0.8, 0.5)
     torsoGroup.add(chestPlate)
 
-    // Core Reactor
-    const coreGeo = new THREE.CircleGeometry(0.08, 32)
+    // Glowing Chest Reactor
+    const coreGeo = new THREE.CircleGeometry(0.085, 32)
     const coreMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4, side: THREE.DoubleSide })
     const coreMesh = new THREE.Mesh(coreGeo, coreMat)
     coreMesh.position.set(0, 0.06, 0.28)
     torsoGroup.add(coreMesh)
 
-    const coreRingGeo = new THREE.RingGeometry(0.09, 0.12, 32)
+    const coreRingGeo = new THREE.RingGeometry(0.095, 0.13, 32)
     const coreRingMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide })
     const coreRing = new THREE.Mesh(coreRingGeo, coreRingMat)
     coreRing.position.set(0, 0.06, 0.27)
     torsoGroup.add(coreRing)
 
-    // Bottom Thruster
+    // Bottom Thruster Ring
     const thrusterGeo = new THREE.TorusGeometry(0.22, 0.04, 16, 32)
     const thrusterMat = new THREE.MeshStandardMaterial({
       color: 0x00f5d4,
@@ -188,7 +186,7 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     thruster.rotation.x = Math.PI / 2
     torsoGroup.add(thruster)
 
-    // D. Floating Hands
+    // D. Floating Dual Orb Hands
     const handGeo = new THREE.SphereGeometry(0.14, 24, 24)
     const handMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 })
     const handRingGeo = new THREE.RingGeometry(0.15, 0.18, 24)
@@ -209,19 +207,19 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     rightHand.add(rightHandMesh, rightHandRing)
     robotGroup.add(rightHand)
 
-    // E. Revolving Halo Ring
+    // E. Revolving Cybernetic Halo Ring
     const haloGeo = new THREE.TorusGeometry(1.05, 0.02, 16, 64)
     const haloMat = new THREE.MeshStandardMaterial({
       color: 0x00f5d4,
       emissive: 0x00f5d4,
-      emissiveIntensity: 1.8,
+      emissiveIntensity: 2,
     })
     const haloMesh = new THREE.Mesh(haloGeo, haloMat)
     haloMesh.position.set(0, -0.15, 0)
     robotGroup.add(haloMesh)
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2)
+    // --- LIGHTING ---
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.4)
     scene.add(ambientLight)
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 2.5)
@@ -236,11 +234,15 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     backPointLight.position.set(0, 0.5, -1.8)
     scene.add(backPointLight)
 
-    // Mouse & Touch Tracking
+    const coreLight = new THREE.PointLight(0x00f5d4, 2.5, 3)
+    coreLight.position.set(0, -0.34, 0.45)
+    scene.add(coreLight)
+
+    // --- MOUSE & TOUCH EVENT LISTENERS ---
     const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 }
 
-    const updateCoords = (clientX, clientY) => {
-      const rect = container.getBoundingClientRect()
+    const updatePointerCoords = (clientX, clientY) => {
+      const rect = mount.getBoundingClientRect()
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
       pointer.targetX = (clientX - centerX) / (window.innerWidth / 2)
@@ -248,40 +250,41 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
     }
 
     const onPointerMove = (e) => {
-      updateCoords(e.clientX, e.clientY)
+      updatePointerCoords(e.clientX, e.clientY)
     }
 
-    const onTouch = (e) => {
+    const onTouchMove = (e) => {
       if (e.touches && e.touches.length > 0) {
-        updateCoords(e.touches[0].clientX, e.touches[0].clientY)
+        updatePointerCoords(e.touches[0].clientX, e.touches[0].clientY)
       }
     }
 
-    const onTouchLeave = () => {
+    const onPointerLeave = () => {
       pointer.targetX = 0
       pointer.targetY = 0
     }
 
     window.addEventListener('mousemove', onPointerMove, { passive: true })
-    window.addEventListener('touchmove', onTouch, { passive: true })
-    window.addEventListener('touchend', onTouchLeave, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
+    window.addEventListener('touchend', onPointerLeave, { passive: true })
 
+    // --- ANIMATION LOOP ---
     const clock = new THREE.Clock()
 
-    const renderLoop = () => {
+    const animate = () => {
       if (isDisposed) return
-      animationFrameId = requestAnimationFrame(renderLoop)
+      animationFrameId = requestAnimationFrame(animate)
 
       const t = clock.getElapsedTime()
 
-      // Organic idle sway for mobile/idle
-      const idleX = Math.sin(t * 0.9) * 0.16
-      const idleY = Math.cos(t * 0.7) * 0.08
+      // Organic idle sway for mobile / idle desktop
+      const idleSwayX = Math.sin(t * 0.9) * 0.18
+      const idleSwayY = Math.cos(t * 0.7) * 0.09
 
-      pointer.x = THREE.MathUtils.lerp(pointer.x, pointer.targetX || idleX, 0.08)
-      pointer.y = THREE.MathUtils.lerp(pointer.y, pointer.targetY || idleY, 0.08)
+      pointer.x = THREE.MathUtils.lerp(pointer.x, pointer.targetX || idleSwayX, 0.08)
+      pointer.y = THREE.MathUtils.lerp(pointer.y, pointer.targetY || idleSwayY, 0.08)
 
-      // Character body and head rotation
+      // Character body and head rotation follows mouse/touch
       robotGroup.rotation.y = pointer.x * 0.65
       robotGroup.rotation.x = -pointer.y * 0.35
 
@@ -299,8 +302,8 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
       rightHand.position.x = 0.85 - Math.cos(t * 2) * 0.03
 
       // Core pulse & halo spin
-      const pulse = 1 + Math.sin(t * 4) * 0.12
-      coreMesh.scale.set(pulse, pulse, 1)
+      const scale = 1 + Math.sin(t * 4) * 0.12
+      coreMesh.scale.set(scale, scale, 1)
 
       haloMesh.rotation.z = t * 1.2
       haloMesh.rotation.x = 1.1 + Math.sin(t * 1.5) * 0.1
@@ -308,12 +311,13 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
       renderer.render(scene, camera)
     }
 
-    renderLoop()
+    animate()
 
+    // Resize handler
     const onResize = () => {
-      if (!container || !renderer) return
-      const w = container.clientWidth || 340
-      const h = container.clientHeight || 340
+      if (!mount || !renderer) return
+      const w = mount.clientWidth || 360
+      const h = mount.clientHeight || 360
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
@@ -325,94 +329,23 @@ export default function AICharacter3D({ className = 'w-full h-full' }) {
       isDisposed = true
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('mousemove', onPointerMove)
-      window.removeEventListener('touchmove', onTouch)
-      window.removeEventListener('touchend', onTouchLeave)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onPointerLeave)
       window.removeEventListener('resize', onResize)
+      if (renderer && renderer.domElement && mount.contains(renderer.domElement)) {
+        mount.removeChild(renderer.domElement)
+      }
       if (renderer) renderer.dispose()
     }
-  }, [webglAvailable])
-
-  // 2. Interactive Parallax & Floating for Fallback Card
-  useEffect(() => {
-    if (webglAvailable) return
-
-    const card = fallbackCardRef.current
-    if (!card) return
-
-    let mouseX = 0
-    let mouseY = 0
-    let currentRotX = 0
-    let currentRotY = 0
-    let rafId
-
-    const handleMove = (e) => {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY
-      const centerX = window.innerWidth / 2
-      const centerY = window.innerHeight / 2
-      mouseX = ((clientX - centerX) / centerX) * 15
-      mouseY = -((clientY - centerY) / centerY) * 15
-    }
-
-    const handleLeave = () => {
-      mouseX = 0
-      mouseY = 0
-    }
-
-    window.addEventListener('mousemove', handleMove, { passive: true })
-    window.addEventListener('touchmove', handleMove, { passive: true })
-    window.addEventListener('touchend', handleLeave, { passive: true })
-
-    const animateCard = () => {
-      rafId = requestAnimationFrame(animateCard)
-      currentRotX += (mouseY - currentRotX) * 0.08
-      currentRotY += (mouseX - currentRotY) * 0.08
-      if (card) {
-        card.style.transform = `perspective(800px) rotateX(${currentRotX}deg) rotateY(${currentRotY}deg)`
-      }
-    }
-
-    animateCard()
-
-    return () => {
-      cancelAnimationFrame(rafId)
-      window.removeEventListener('mousemove', handleMove)
-      window.removeEventListener('touchmove', handleMove)
-      window.removeEventListener('touchend', handleLeave)
-    }
-  }, [webglAvailable])
+  }, [])
 
   return (
     <div
-      ref={containerRef}
+      ref={mountRef}
       className={`relative ${className} flex items-center justify-center select-none`}
     >
       {/* Soft theme color ambient glow behind canvas */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 bg-mint-400/25 rounded-full blur-[90px] pointer-events-none -z-10 animate-pulse"></div>
-
-      {webglAvailable ? (
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full cursor-grab active:cursor-grabbing block"
-          style={{ width: '100%', height: '100%', maxWidth: '420px', maxHeight: '420px' }}
-        />
-      ) : (
-        /* Dynamic 3D Interactive Mascot with Holographic Neon Rings */
-        <div
-          ref={fallbackCardRef}
-          className="relative group w-64 h-64 sm:w-80 sm:h-80 md:w-88 md:h-88 rounded-full p-2 bg-gradient-to-b from-mint-400/30 via-slate-800/50 to-purple-500/30 border border-mint-400/40 shadow-[0_0_35px_rgba(0,245,212,0.3)] backdrop-blur-md overflow-hidden flex items-center justify-center cursor-pointer transition-transform ease-out"
-        >
-          <img
-            src={heroAvatarImg}
-            alt="Shubham Sharma 3D AI Mascot"
-            className="w-full h-full object-cover rounded-full select-none pointer-events-none transform group-hover:scale-105 transition-transform duration-500"
-          />
-
-          {/* Glowing Holographic Halo Overlay */}
-          <div className="absolute inset-0 rounded-full border-2 border-mint-400/30 pointer-events-none animate-spin-slow"></div>
-          <div className="absolute -inset-1 rounded-full border border-mint-400/20 pointer-events-none"></div>
-        </div>
-      )}
     </div>
   )
 }

@@ -105,7 +105,7 @@ export default function Hero() {
               Hello! I'm
             </p>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white uppercase tracking-tight leading-[1.08] font-display">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white uppercase tracking-tight leading-[1.05] font-display">
               SHUBHAM <br />
               <span className="text-slate-100">SHARMA</span>
             </h1>
@@ -135,13 +135,13 @@ export default function Hero() {
           <div className="lg:col-span-4 flex flex-col justify-center items-center my-4 lg:my-0 z-20">
             <div
               ref={avatarRef}
-              className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 xl:w-96 xl:h-96 flex items-center justify-center"
             >
               {/* Interactive 3D Mascot Canvas */}
               <AICharacter3D className="w-full h-full" />
 
               {/* Floating Status Pill */}
-              <div className="absolute -bottom-2 sm:bottom-0 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#080d12]/90 border border-mint-400/40 backdrop-blur-md flex items-center gap-2 shadow-lg z-30 pointer-events-none max-w-[95%]">
+              <div className="absolute -bottom-2 sm:bottom-0 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#080d12]/90 border border-mint-400/40 backdrop-blur-md flex items-center gap-2 shadow-lg z-30 pointer-events-none max-w-[95%] whitespace-nowrap">
                 <span className="w-2 h-2 rounded-full bg-mint-400 shrink-0 animate-ping"></span>
                 <span className="text-[10px] sm:text-[11px] font-mono font-medium text-slate-200 truncate">
                   KR Mangalam University • B.Tech AI/ML
@@ -155,11 +155,11 @@ export default function Hero() {
             ref={rightTextRef}
             className="lg:col-span-4 flex flex-col items-center lg:items-end text-center lg:text-right z-10"
           >
-            <p className="text-xl sm:text-2xl font-semibold text-slate-300 mb-1 tracking-tight">
+            <p className="text-lg sm:text-xl xl:text-2xl font-semibold text-slate-300 mb-1 tracking-tight">
               Generative AI &
             </p>
 
-            <div className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.05] font-display">
+            <div className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black uppercase tracking-tight leading-[1.05] font-display">
               <span className="text-mint-400 glow-text-mint block">
                 AI / ML
               </span>
