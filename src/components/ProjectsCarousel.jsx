@@ -329,7 +329,7 @@ export default function ProjectsCarousel() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
         {/* Section Header & Filter Tabs */}
-        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-mint-400/10 border border-mint-400/30 text-mint-300 font-mono text-xs uppercase tracking-widest mb-3">
               <Zap className="w-3.5 h-3.5" />
@@ -344,12 +344,12 @@ export default function ProjectsCarousel() {
           </div>
 
           {/* Controls: View Mode & Categories */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full md:w-auto">
             {/* View Mode Switcher */}
-            <div className="flex items-center p-1 rounded-lg bg-surface-50 border border-slate-800">
+            <div className="flex items-center p-1 rounded-lg bg-surface-50 border border-slate-800 shrink-0">
               <button
                 onClick={() => setViewMode('carousel')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono transition-all cursor-pointer ${
                   viewMode === 'carousel'
                     ? 'bg-mint-400 text-black font-bold'
                     : 'text-slate-400 hover:text-white'
@@ -361,7 +361,7 @@ export default function ProjectsCarousel() {
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono transition-all cursor-pointer ${
                   viewMode === 'grid'
                     ? 'bg-mint-400 text-black font-bold'
                     : 'text-slate-400 hover:text-white'
@@ -373,8 +373,8 @@ export default function ProjectsCarousel() {
               </button>
             </div>
 
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap gap-1.5">
+            {/* Filter Tabs (Horizontal scroll on mobile) */}
+            <div className="flex overflow-x-auto no-scrollbar gap-1.5 w-full sm:w-auto pb-1">
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -382,7 +382,7 @@ export default function ProjectsCarousel() {
                     setSelectedFilter(cat)
                     setCurrentIndex(0)
                   }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     selectedFilter === cat
                       ? 'bg-mint-400 text-black font-bold shadow-mint-sm'
                       : 'bg-surface-50 text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700'

@@ -160,15 +160,15 @@ export default function TechStack() {
     <section
       id="tech-stack"
       ref={sectionRef}
-      className="relative py-28 bg-surface-DEFAULT/40 border-t border-slate-800/60 overflow-hidden"
+      className="relative py-16 sm:py-28 bg-surface-DEFAULT/40 border-t border-slate-800/60 overflow-hidden"
     >
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-mint-500/5 rounded-full blur-[180px] pointer-events-none -z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
-        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-16">
+        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-mint-400/10 border border-mint-400/30 text-mint-300 font-mono text-xs uppercase tracking-widest mb-3">
             <Terminal className="w-3.5 h-3.5" />
             <span>ARSENAL & PROFICIENCY</span>
@@ -176,13 +176,13 @@ export default function TechStack() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight font-display">
             Core <span className="text-mint-400 glow-text-mint">Tech Stack</span>
           </h2>
-          <p className="mt-3 text-sm text-slate-400 font-normal">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-400 font-normal">
             Battle-tested frameworks, cloud infrastructure, and toolkits leveraged across production systems.
           </p>
         </div>
 
-        {/* Category Selector Tabs */}
-        <div ref={tabsRef} className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Category Selector Tabs (Scrollable on mobile) */}
+        <div ref={tabsRef} className="flex overflow-x-auto no-scrollbar sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 w-full pb-2">
           {techCategories.map((cat) => {
             const Icon = cat.icon
             const isActive = activeTab === cat.id
@@ -190,7 +190,7 @@ export default function TechStack() {
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-xl font-mono text-xs transition-all cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl font-mono text-xs transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   isActive
                     ? 'bg-mint-400 text-black font-bold shadow-mint-sm'
                     : 'bg-surface-50 hover:bg-surface-100 text-slate-300 border border-slate-800 hover:border-slate-700'
@@ -204,7 +204,7 @@ export default function TechStack() {
         </div>
 
         {/* Active Category Display Card */}
-        <div ref={cardRef} className="tech-bracket-card relative max-w-4xl mx-auto rounded-2xl bg-surface-50 border border-slate-800 p-6 sm:p-10 backdrop-blur-md shadow-2xl">
+        <div ref={cardRef} className="tech-bracket-card relative max-w-4xl mx-auto rounded-2xl bg-surface-50 border border-slate-800 p-5 sm:p-10 backdrop-blur-md shadow-2xl">
           <div className="tech-corner-tr"></div>
           <div className="tech-corner-bl"></div>
 

@@ -176,34 +176,34 @@ export default function ContactFooter() {
   }
 
   return (
-    <footer id="contact" ref={sectionRef} className="relative pt-24 pb-12 bg-[#040608] border-t border-slate-800/80 overflow-hidden">
+    <footer id="contact" ref={sectionRef} className="relative pt-16 sm:pt-24 pb-10 sm:pb-12 bg-[#040608] border-t border-slate-800/80 overflow-hidden">
       {/* Background glow ambiance */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-mint-500/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Contact Header */}
-        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-16">
+        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-mint-400/10 border border-mint-400/30 text-mint-300 font-mono text-xs uppercase tracking-widest mb-3">
             <Mail className="w-3.5 h-3.5" />
             <span>LET'S COLLABORATE</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display">
             Start a <span className="text-mint-400 glow-text-mint">Conversation</span>
           </h2>
-          <p className="mt-3 text-sm text-slate-400">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-400">
             Open to internships, AI/ML research collaborations, and opportunities to build impactful intelligent solutions.
           </p>
         </div>
 
         {/* Two-Column Grid: Contact Info & Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-16 sm:mb-20">
           
           {/* Left Column: Quick Contact Details */}
-          <div ref={leftColRef} className="lg:col-span-5 flex flex-col gap-6">
+          <div ref={leftColRef} className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
             
             {/* Quick Email Card with Copy */}
-            <div className="tech-bracket-card relative rounded-2xl bg-surface-50 border border-slate-800 p-6 sm:p-8 backdrop-blur-md">
+            <div className="tech-bracket-card relative rounded-2xl bg-surface-50 border border-slate-800 p-5 sm:p-8 backdrop-blur-md">
               <div className="tech-corner-tr"></div>
               <div className="tech-corner-bl"></div>
 
@@ -215,7 +215,7 @@ export default function ContactFooter() {
               <div className="mb-4">
                 <a
                   href={`mailto:${email}`}
-                  className="block text-[15px] sm:text-lg lg:text-[17px] xl:text-xl font-bold text-white font-mono tracking-tight hover:text-mint-300 transition-colors select-all leading-normal whitespace-nowrap overflow-x-auto sm:overflow-visible"
+                  className="block text-xs sm:text-base lg:text-[17px] xl:text-xl font-bold text-white font-mono tracking-tight hover:text-mint-300 transition-colors select-all leading-normal break-all sm:break-normal"
                   title="Send email to shubhamramdhiraj@gmail.com"
                 >
                   shubhamramdhiraj@gmail.com
@@ -325,7 +325,7 @@ export default function ContactFooter() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. John Doe"
-                        className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-sm text-white placeholder-slate-500 outline-none font-sans transition-all"
+                        className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-base sm:text-sm text-white placeholder-slate-500 outline-none font-sans transition-all"
                       />
                     </div>
 
@@ -339,7 +339,7 @@ export default function ContactFooter() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@example.com"
-                        className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-sm text-white placeholder-slate-500 outline-none font-sans transition-all"
+                        className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-base sm:text-sm text-white placeholder-slate-500 outline-none font-sans transition-all"
                       />
                     </div>
                   </div>
@@ -353,7 +353,7 @@ export default function ContactFooter() {
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       placeholder="Project Inquiry / Job Opportunity / Collaboration"
-                      className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-sm text-white placeholder-slate-500 outline-none font-sans transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-base sm:text-sm text-white placeholder-slate-500 outline-none font-sans transition-all"
                     />
                   </div>
 
@@ -367,7 +367,7 @@ export default function ContactFooter() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Tell me about your project, goals, or questions..."
-                      className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-sm text-white placeholder-slate-500 outline-none font-sans resize-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-surface-100 border border-slate-800 focus:border-mint-400 focus:ring-1 focus:ring-mint-400 text-base sm:text-sm text-white placeholder-slate-500 outline-none font-sans resize-none transition-all"
                     ></textarea>
                   </div>
 

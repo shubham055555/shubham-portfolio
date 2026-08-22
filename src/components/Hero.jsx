@@ -96,56 +96,55 @@ export default function Hero() {
             ref={leftTextRef}
             className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left z-10"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mint-950/60 border border-mint-500/30 text-mint-300 font-mono text-xs mb-4 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-mint-400 animate-spin-slow" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mint-950/60 border border-mint-500/30 text-mint-300 font-mono text-[11px] sm:text-xs mb-4 shadow-sm text-center">
+              <Sparkles className="w-3.5 h-3.5 text-mint-400 shrink-0 animate-spin-slow" />
               <span>Greater Delhi Area • Available for AI/ML Roles</span>
             </div>
 
-            <p className="text-xl sm:text-2xl font-semibold text-mint-400 mb-1 tracking-tight">
+            <p className="text-lg sm:text-2xl font-semibold text-mint-400 mb-1 tracking-tight">
               Hello! I'm
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase tracking-tight leading-[1.05] font-display">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white uppercase tracking-tight leading-[1.08] font-display">
               SHUBHAM <br />
               <span className="text-slate-100">SHARMA</span>
             </h1>
 
-            <p className="mt-4 text-sm text-slate-300 font-normal max-w-md">
+            <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-slate-300 font-normal max-w-md">
               <strong className="text-mint-300 font-medium">BE THE EXCEPTION.</strong> AI/ML Engineer passionate about Machine Learning, Deep Learning, NLP, and Generative AI — fine-tuning intelligent models that learn, adapt, and scale.
             </p>
 
             {/* Quick Action Buttons */}
-            <div className="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start">
+            <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start w-full sm:w-auto">
               <button
                 onClick={scrollToWork}
-                className="px-5 py-2.5 rounded-lg bg-mint-400 hover:bg-mint-300 text-black font-bold text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-mint-sm hover:shadow-mint-glow cursor-pointer transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-lg bg-mint-400 hover:bg-mint-300 text-black font-bold text-xs font-mono uppercase tracking-wider transition-all duration-300 shadow-mint-sm hover:shadow-mint-glow cursor-pointer text-center"
               >
                 Explore Experience ↓
               </button>
               <button
                 onClick={scrollToContact}
-                className="px-5 py-2.5 rounded-lg bg-surface-100 hover:bg-surface-200 text-slate-200 hover:text-white font-medium text-xs font-mono uppercase tracking-wider border border-slate-800 hover:border-slate-600 transition-all duration-300 cursor-pointer"
+                className="w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-lg bg-surface-100 hover:bg-surface-200 text-slate-200 hover:text-white font-medium text-xs font-mono uppercase tracking-wider border border-slate-800 hover:border-slate-600 transition-all duration-300 cursor-pointer text-center"
               >
                 Get In Touch
               </button>
             </div>
           </div>
 
-          {/* Center Column: 3D Developer Avatar */}
           {/* Center Column: 3D Interactive AI Robot Character */}
-          <div className="lg:col-span-4 flex flex-col justify-center items-center my-2 lg:my-0 z-20">
+          <div className="lg:col-span-4 flex flex-col justify-center items-center my-4 lg:my-0 z-20">
             <div
               ref={avatarRef}
-              className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-96 md:h-96 flex items-center justify-center"
+              className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center"
             >
               {/* Interactive 3D Mascot Canvas */}
               <AICharacter3D className="w-full h-full" />
 
               {/* Floating Status Pill */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#080d12]/90 border border-mint-400/40 backdrop-blur-md flex items-center gap-2 shadow-lg z-30 pointer-events-none">
-                <span className="w-2 h-2 rounded-full bg-mint-400 animate-ping"></span>
-                <span className="text-[11px] font-mono font-medium text-slate-200 whitespace-nowrap">
-                  KR Mangalam University • B.Tech CSE (AI/ML)
+              <div className="absolute -bottom-2 sm:bottom-0 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#080d12]/90 border border-mint-400/40 backdrop-blur-md flex items-center gap-2 shadow-lg z-30 pointer-events-none max-w-[95%]">
+                <span className="w-2 h-2 rounded-full bg-mint-400 shrink-0 animate-ping"></span>
+                <span className="text-[10px] sm:text-[11px] font-mono font-medium text-slate-200 truncate">
+                  KR Mangalam University • B.Tech AI/ML
                 </span>
               </div>
             </div>

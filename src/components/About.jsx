@@ -83,13 +83,13 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-28 bg-surface-DEFAULT/80 border-t border-b border-slate-800/60 overflow-hidden"
+      className="relative py-16 sm:py-28 bg-surface-DEFAULT/80 border-t border-b border-slate-800/60 overflow-hidden"
     >
       {/* Background glow accents */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-mint-500/5 rounded-full blur-[140px] pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/5 rounded-full blur-[140px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: 3D Character Avatar & Tech Card */}

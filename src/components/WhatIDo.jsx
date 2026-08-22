@@ -104,25 +104,25 @@ export default function WhatIDo() {
     <section
       id="what-i-do"
       ref={sectionRef}
-      className="relative py-28 bg-background/40 overflow-hidden"
+      className="relative py-16 sm:py-28 bg-background/40 overflow-hidden"
     >
       {/* Background glow ambiance */}
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-mint-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           
           {/* Left Column: WHAT I DO Heading + 3D Coding Character at Desk */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
             
             {/* Giant Title (Matches reference screenshot 5) */}
-            <div ref={titleRef} className="mb-8">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-none font-display">
+            <div ref={titleRef} className="mb-6 sm:mb-8">
+              <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-none font-display">
                 <span className="text-white block">WHAT</span>
                 <span className="text-mint-400 glow-text-mint block">I DO</span>
               </h2>
-              <p className="mt-3 text-sm text-slate-400 font-mono">
+              <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-400 font-mono">
                 // Specialized Engineering Disciplines
               </p>
             </div>
@@ -130,7 +130,7 @@ export default function WhatIDo() {
             {/* 3D Developer at Coding Desk Illustration Card */}
             <div
               ref={deskImgRef}
-              className="relative w-full rounded-2xl bg-surface-50 border border-slate-800 p-3 shadow-2xl group overflow-hidden"
+              className="relative w-full rounded-2xl bg-surface-50 border border-slate-800 p-2.5 sm:p-3 shadow-2xl group overflow-hidden"
             >
               {/* Neon aura on hover */}
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-mint-500/20 to-purple-500/20 blur-lg opacity-60 group-hover:opacity-100 transition-opacity"></div>
@@ -149,7 +149,7 @@ export default function WhatIDo() {
               </div>
 
               {/* Bottom Quick Specs Bar */}
-              <div className="mt-3 px-2 flex items-center justify-between text-xs font-mono text-slate-400">
+              <div className="mt-2.5 sm:mt-3 px-2 flex items-center justify-between text-[11px] sm:text-xs font-mono text-slate-400">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <Sparkles className="w-3.5 h-3.5 text-mint-400" />
                   Full-Lifecycle Development
@@ -161,23 +161,23 @@ export default function WhatIDo() {
           </div>
 
           {/* Right Column: Expandable Futuristic Tech-Bracket Cards */}
-          <div ref={cardsContainerRef} className="lg:col-span-7 flex flex-col gap-6">
+          <div ref={cardsContainerRef} className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
             
             {/* CARD 1: GENERATIVE AI & PROMPT ENGINEERING */}
-            <div className="tech-bracket-card relative rounded-xl bg-surface-50/90 border border-slate-800 p-6 sm:p-8 backdrop-blur-sm shadow-xl transition-all duration-300 hover:border-slate-700">
+            <div className="tech-bracket-card relative rounded-xl bg-surface-50/90 border border-slate-800 p-5 sm:p-8 backdrop-blur-sm shadow-xl transition-all duration-300 hover:border-slate-700">
               <div className="tech-corner-tr"></div>
               <div className="tech-corner-bl"></div>
 
               {/* Header area */}
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="w-2 h-2 rounded-full bg-mint-400"></span>
-                    <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight font-display">
+                    <h3 className="text-xl sm:text-3xl font-black text-white uppercase tracking-tight font-display">
                       GEN AI & PROMPT ENG
                     </h3>
                   </div>
-                  <p className="text-xs font-mono uppercase tracking-wider text-mint-300 mb-3">
+                  <p className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-mint-300 mb-2 sm:mb-3">
                     LLM Workflows & Conversational Data Analysis
                   </p>
                 </div>
@@ -185,7 +185,7 @@ export default function WhatIDo() {
                 {/* Expand / Collapse Button */}
                 <button
                   onClick={() => toggleCard('frontend')}
-                  className="w-9 h-9 rounded-lg bg-surface-100 hover:bg-surface-200 border border-slate-700 hover:border-mint-400/50 flex items-center justify-center text-slate-300 hover:text-mint-400 transition-all cursor-pointer shadow-sm"
+                  className="w-10 h-10 rounded-lg bg-surface-100 hover:bg-surface-200 border border-slate-700 hover:border-mint-400/50 flex items-center justify-center text-slate-300 hover:text-mint-400 transition-all cursor-pointer shadow-sm shrink-0"
                   aria-label="Toggle Generative AI card"
                 >
                   {expandedCards.frontend ? (

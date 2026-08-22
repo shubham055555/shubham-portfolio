@@ -167,16 +167,16 @@ export default function Timeline() {
     <section
       id="timeline"
       ref={sectionRef}
-      className="relative py-28 bg-surface-DEFAULT/50 border-t border-slate-800/60 overflow-hidden"
+      className="relative py-16 sm:py-28 bg-surface-DEFAULT/50 border-t border-slate-800/60 overflow-hidden"
     >
       {/* Background ambient accents */}
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-mint-500/5 rounded-full blur-[140px] pointer-events-none -z-10"></div>
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-purple-600/5 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
-        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-20">
+        <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-12 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-mint-400/10 border border-mint-400/30 text-mint-300 font-mono text-xs uppercase tracking-widest mb-3">
             <Briefcase className="w-3.5 h-3.5" />
             <span>CAREER JOURNEY</span>
@@ -184,7 +184,7 @@ export default function Timeline() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight font-display">
             Experience & <span className="text-mint-400 glow-text-mint">Milestones</span>
           </h2>
-          <p className="mt-3 text-sm text-slate-400 font-normal">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-400 font-normal">
             A scroll-linked chronicle of engineering leadership, production architectures, and shipped platforms.
           </p>
         </div>
@@ -193,16 +193,16 @@ export default function Timeline() {
         <div className="relative max-w-4xl mx-auto">
           
           {/* Static track line */}
-          <div className="absolute top-0 bottom-0 left-4 md:left-1/2 -translate-x-1/2 w-0.5 bg-slate-800 pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 left-3.5 sm:left-4 md:left-1/2 -translate-x-1/2 w-0.5 bg-slate-800 pointer-events-none"></div>
 
           {/* Dynamic ScrollTrigger animated progress laser */}
           <div
             ref={lineRef}
-            className="absolute top-0 left-4 md:left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-mint-300 via-mint-400 to-mint-500 shadow-[0_0_12px_#00f5d4] pointer-events-none"
+            className="absolute top-0 left-3.5 sm:left-4 md:left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-mint-300 via-mint-400 to-mint-500 shadow-[0_0_12px_#00f5d4] pointer-events-none"
           ></div>
 
           {/* Timeline Cards */}
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-8 sm:space-y-16">
             {careerMilestones.map((item, index) => {
               const isEven = index % 2 === 0
               return (
@@ -211,16 +211,16 @@ export default function Timeline() {
                   ref={(el) => (itemsRef.current[index] = el)}
                   className={`relative flex flex-col md:flex-row items-start ${
                     isEven ? 'md:flex-row-reverse' : ''
-                  } gap-6 md:gap-12 pl-12 md:pl-0`}
+                  } gap-4 sm:gap-6 md:gap-12 pl-9 sm:pl-12 md:pl-0`}
                 >
                   {/* Center Node Marker */}
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-4 w-6 h-6 rounded-full bg-[#080d12] border-2 border-mint-400 flex items-center justify-center shadow-[0_0_12px_rgba(0,245,212,0.4)] z-20 group">
-                    <div className="w-2 h-2 rounded-full bg-mint-400 group-hover:scale-150 transition-transform"></div>
+                  <div className="absolute left-3.5 sm:left-4 md:left-1/2 -translate-x-1/2 top-4 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#080d12] border-2 border-mint-400 flex items-center justify-center shadow-[0_0_12px_rgba(0,245,212,0.4)] z-20 group">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-mint-400 group-hover:scale-150 transition-transform"></div>
                   </div>
 
                   {/* Content Card (Half Width on Desktop) */}
                   <div className="w-full md:w-1/2">
-                    <div className="tech-bracket-card relative rounded-xl bg-surface-50 border border-slate-800/90 p-6 sm:p-7 backdrop-blur-sm shadow-xl hover:border-mint-500/40 transition-all duration-300 group">
+                    <div className="tech-bracket-card relative rounded-xl bg-surface-50 border border-slate-800/90 p-5 sm:p-7 backdrop-blur-sm shadow-xl hover:border-mint-500/40 transition-all duration-300 group">
                       <div className="tech-corner-tr"></div>
                       <div className="tech-corner-bl"></div>
 
