@@ -144,55 +144,87 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-30 bg-[#06090c]/95 backdrop-blur-xl flex flex-col justify-center items-center gap-6 p-8 md:hidden">
-          <div className="flex flex-col items-center gap-6 text-base font-mono tracking-widest uppercase">
+        <div className="fixed inset-0 z-50 bg-[#040608]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden overflow-y-auto">
+          {/* Top Bar inside Drawer */}
+          <div className="flex items-center justify-between w-full pb-6 border-b border-slate-800/80">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-surface-100 border border-mint-400/40 flex items-center justify-center font-display font-black text-sm text-mint-400">
+                SS
+              </div>
+              <span className="font-bold text-sm text-white font-mono">Shubham Sharma</span>
+            </div>
             <button
-              onClick={() => scrollToSection('about')}
-              className="text-slate-300 hover:text-mint-300 py-2"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl bg-surface-100 border border-slate-800 text-slate-300 hover:text-white cursor-pointer"
+              aria-label="Close menu"
             >
-              ABOUT
-            </button>
-            <button
-              onClick={() => scrollToSection('what-i-do')}
-              className="text-slate-300 hover:text-mint-300 py-2"
-            >
-              SERVICES (WHAT I DO)
-            </button>
-            <button
-              onClick={() => scrollToSection('timeline')}
-              className="text-slate-300 hover:text-mint-300 py-2"
-            >
-              CAREER TIMELINE
-            </button>
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="text-slate-300 hover:text-mint-300 py-2"
-            >
-              FEATURED WORK
-            </button>
-            <button
-              onClick={() => scrollToSection('tech-stack')}
-              className="text-slate-300 hover:text-mint-300 py-2"
-            >
-              TECH STACK
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="mt-4 px-8 py-3 rounded-full bg-mint-400 text-black font-bold tracking-wider"
-            >
-              GET IN TOUCH
+              <X className="w-5 h-5 text-mint-400" />
             </button>
           </div>
 
-          <div className="mt-8 text-center">
-            <p className="text-xs font-mono text-slate-500 mb-2">DIRECT EMAIL</p>
+          {/* Navigation Links */}
+          <div className="flex flex-col items-start gap-4 py-8 text-lg font-mono tracking-wider uppercase w-full">
             <button
-              onClick={copyEmail}
-              className="text-sm font-mono text-mint-400 flex items-center justify-center gap-2"
+              onClick={() => scrollToSection('about')}
+              className="w-full text-left text-slate-200 hover:text-mint-300 py-2.5 border-b border-slate-900 flex items-center justify-between"
             >
-              <span>{email}</span>
-              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              <span>01. ABOUT</span>
+              <ArrowUpRight className="w-4 h-4 text-mint-400/60" />
             </button>
+            <button
+              onClick={() => scrollToSection('what-i-do')}
+              className="w-full text-left text-slate-200 hover:text-mint-300 py-2.5 border-b border-slate-900 flex items-center justify-between"
+            >
+              <span>02. SERVICES (WHAT I DO)</span>
+              <ArrowUpRight className="w-4 h-4 text-mint-400/60" />
+            </button>
+            <button
+              onClick={() => scrollToSection('timeline')}
+              className="w-full text-left text-slate-200 hover:text-mint-300 py-2.5 border-b border-slate-900 flex items-center justify-between"
+            >
+              <span>03. CAREER TIMELINE</span>
+              <ArrowUpRight className="w-4 h-4 text-mint-400/60" />
+            </button>
+            <button
+              onClick={() => scrollToSection('projects')}
+              className="w-full text-left text-slate-200 hover:text-mint-300 py-2.5 border-b border-slate-900 flex items-center justify-between"
+            >
+              <span>04. FEATURED PROJECTS</span>
+              <ArrowUpRight className="w-4 h-4 text-mint-400/60" />
+            </button>
+            <button
+              onClick={() => scrollToSection('tech-stack')}
+              className="w-full text-left text-slate-200 hover:text-mint-300 py-2.5 border-b border-slate-900 flex items-center justify-between"
+            >
+              <span>05. TECH STACK</span>
+              <ArrowUpRight className="w-4 h-4 text-mint-400/60" />
+            </button>
+            
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="w-full mt-4 py-3.5 rounded-xl bg-mint-400 hover:bg-mint-300 text-black font-bold text-center tracking-widest uppercase font-mono shadow-mint-sm transition-all"
+            >
+              START A CONVERSATION →
+            </button>
+          </div>
+
+          {/* Bottom Contact Pill */}
+          <div className="pt-6 border-t border-slate-800/80 flex flex-col gap-3">
+            <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+              <span>GET IN TOUCH</span>
+              <button
+                onClick={copyEmail}
+                className="text-mint-400 flex items-center gap-1.5 hover:text-mint-300"
+              >
+                {copied ? <span>Copied! ✓</span> : <span>Copy Email 📋</span>}
+              </button>
+            </div>
+            <a
+              href={`mailto:${email}`}
+              className="text-xs font-mono text-slate-200 truncate bg-surface-50 p-2.5 rounded-lg border border-slate-800 block text-center"
+            >
+              {email}
+            </a>
           </div>
         </div>
       )}
