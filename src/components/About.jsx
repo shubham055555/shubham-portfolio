@@ -103,11 +103,12 @@ export default function About() {
 
               {/* Character Glass Container */}
               <div className="relative rounded-2xl bg-surface-50 border border-slate-700/70 p-4 shadow-2xl overflow-hidden">
-                <div className="relative rounded-xl overflow-hidden aspect-square bg-[#0a0f14] flex items-center justify-center">
+                <div className="relative rounded-xl overflow-hidden aspect-[4/4.5] sm:aspect-square bg-[#0a0f14] flex items-center justify-center">
                   <img
                     src={shubhamPhotoImg}
                     alt="Shubham Sharma - AI/ML Engineer"
-                    className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 select-none"
+                    className="w-full h-full object-cover transform scale-125 -translate-y-4 sm:-translate-y-5 group-hover:scale-130 transition-all duration-700 select-none"
+                    style={{ objectPosition: 'center 35%' }}
                   />
                   {/* Subtle vignette gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-transparent to-transparent pointer-events-none"></div>
