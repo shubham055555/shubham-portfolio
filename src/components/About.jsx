@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Code2, Server, Cpu, Sparkles, Terminal, CheckCircle2, ArrowRight } from 'lucide-react'
-import heroAvatarImg from '../assets/hero-avatar.jpg'
+import shubhamPhotoImg from '../assets/shubham-photo.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -24,9 +24,9 @@ export default function About() {
             scale: 1,
             duration: 0.9,
             ease: 'power3.out',
-            clearProps: 'opacity,transform',
+            clearProps: 'all',
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger: avatarCardRef.current,
               start: 'top 85%',
               toggleActions: 'play none none none',
             },
@@ -34,19 +34,19 @@ export default function About() {
         )
       }
 
-      // Reveal animation on scroll for content
+      // Reveal animation for content
       if (contentRef.current) {
         gsap.fromTo(
           contentRef.current,
-          { opacity: 0, y: 40 },
+          { opacity: 0, x: 40 },
           {
             opacity: 1,
-            y: 0,
-            duration: 0.8,
+            x: 0,
+            duration: 0.9,
             ease: 'power3.out',
             clearProps: 'all',
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger: contentRef.current,
               start: 'top 85%',
               toggleActions: 'play none none none',
             },
@@ -54,7 +54,7 @@ export default function About() {
         )
       }
 
-      // Staggered pillars reveal
+      // Pillars staggered reveal
       if (pillarsRef.current) {
         gsap.fromTo(
           pillarsRef.current.children,
@@ -62,7 +62,7 @@ export default function About() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
             stagger: 0.12,
             ease: 'power3.out',
             clearProps: 'all',
@@ -105,9 +105,9 @@ export default function About() {
               <div className="relative rounded-2xl bg-surface-50 border border-slate-700/70 p-4 shadow-2xl overflow-hidden">
                 <div className="relative rounded-xl overflow-hidden aspect-square bg-[#0a0f14] flex items-center justify-center">
                   <img
-                    src={heroAvatarImg}
-                    alt="Developer in action"
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    src={shubhamPhotoImg}
+                    alt="Shubham Sharma - AI/ML Engineer"
+                    className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 select-none"
                   />
                   {/* Subtle vignette gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14]/80 via-transparent to-transparent pointer-events-none"></div>
